@@ -1,0 +1,18 @@
+<config>    
+    <modules>
+        <Lk_Helloworld>
+            <version>0.1.0</version>
+        </Lk_Helloworld>
+    </modules>
+      <frontend>
+        <routers>
+            <helloworld123>
+                <use>standard</use>
+                <args>
+                    <module>Lk_Helloworld</module>
+                    <frontName>helloworld123</frontName>
+                </args>
+            </helloworld123>
+        </routers>  
+    </frontend>
+</config>

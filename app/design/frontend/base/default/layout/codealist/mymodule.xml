@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+ 
+    <!-- This identifier is composed by frontName_controllerName_actionName -->
+    <helloworld_index_index translate="label">
+ 
+        <!-- This is a reference to the container <head> -->
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>codealist/mymodule/css/styles.css</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>codealist/mymodule/js/script.js</name>
+            </action>
+        </reference>
+ 
+        <!-- This is a reference to the main container of the page -->
+        <reference name="content">
+            <!-- Here we create a block using the Block class we created in the Block directory. -->
+            <!-- The "type" attribute references to that Block class -->
+            <!-- Then we put a name to the block which needs to be unique, and point it to a phtml file with the whole view in it -->
+            <block type="codealist_mymodule/index" name="codealist.mymodule.helloworld"
+                   template="codealist/mymodule/helloworld.phtml"/>
+        </reference>
+ 
+    </helloworld_index_index>
+</layout>

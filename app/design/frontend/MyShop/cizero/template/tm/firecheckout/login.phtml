@@ -1,0 +1,37 @@
+<?php if (Mage::getSingleton('customer/session')->isLoggedIn()): return; endif; ?>
+<div id="firecheckout-login-window" style="display: none;">
+    <div class="custom-popup active">
+        <div class="block block-login">
+            <div class="block-title">
+                <strong><span><?php echo $this->__('Login') ?></span></strong>
+            </div>
+            <form action="<?php echo $this->getPostActionUrl() ?>" method="post">
+                <div class="block-content active">
+                    <div class="input-box">
+                        <?php /* <label for="mini-login"><?php echo $this->__('Email:') ?></label> */ ?>
+                        <input type="email" autocapitalize="off" autocorrect="off" spellcheck="false" name="login[username]" id="mini-login" class="input-text" placeholder="<?php echo $this->__('E-mail');?>" />
+                    </div>
+                    <div class="input-box">
+                        <?php /* <label for="mini-password"><?php echo $this->__('Password:') ?></label> */ ?>
+                        <input type="password" name="login[password]" id="mini-password" class="input-text" placeholder="<?php echo $this->__('Password');?>" />
+                    </div>
+                    <div class="actions input-box">
+                        <button type="submit" class="button"><span><span><?php echo $this->__('Login') ?></span></span></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+    //<![CDATA[
+        var loginForm = new VarienForm('firecheckout-login-form', true);
+    //]]>
+    </script>
+    <script>
+        jQuery('.custom-popup .non-registrato > a').click(function(){
+            jQuery('.custom-popup').removeClass('active');
+            jQuery('.custom-popup').addClass('active');
+        });
+    </script>
+</div>

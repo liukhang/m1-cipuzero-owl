@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Codealist_MyModule>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Codealist_MyModule>
+    </modules>
+ 
+    <global>
+        <blocks>
+            <codealist_mymodule>
+                <class>Codealist_MyModule_Block</class>
+            </codealist_mymodule>
+        </blocks>
+    </global>
+ 
+    <frontend>
+        <routers>
+            <!-- the <helloworld> tagname appears to be arbitrary, but by
+            convention is should match the frontName tag below-->
+            <helloworld>
+                <use>standard</use>
+                <args>
+                    <module>Codealist_MyModule</module>
+                    <frontName>helloworld</frontName>
+                </args>
+            </helloworld>
+        </routers>
+ 
+    <!-- New lines -->
+        <layout>
+            <updates>
+                <compare>
+                    <file>codealist/mymodule.xml</file>
+                </compare>
+            </updates>
+        </layout>
+    <!-- End of New Lines -->
+ 
+    </frontend>
+</config>

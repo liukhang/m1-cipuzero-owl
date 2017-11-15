@@ -1,0 +1,97 @@
+d]['label']) ?></label> */ ?>
+                                        <div class="input-box">
+                                            <?php if ('country_id' === $field) : ?>
+                                                <?php echo $this->getCountryHtmlSelect($_prefix) ?>
+                                            <?php elseif ('region' === $field): ?>
+                                                <select id="<?php echo $_prefix ?>:region_id" name="<?php echo $_prefix ?>[region_id]"
+                                                    title="<?php echo (empty($fields[$field]['title']) ? $this->__($fields[$field]['label']) : $this->__($fields[$field]['title'])) ?>"
+                                                    class="validate-select<?php echo $required ? ' required-entry' : '' ?>" style="display:none;"
+                                                >
+                                                    <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+                                                </select>
+                                                <script type="text/javascript">
+                                                //<![CDATA[
+                                                    $('<?php echo $_prefix ?>:region_id').setAttribute('defaultValue',  "<?php echo $_address->getRegionId() ?>");
+                                                //]]>
+                                                </script>
+                                                <input placeholder="<?php echo $this->__($fields[$field]['label']) ?>*" type="text" id="<?php echo $_prefix ?>:region" name="<?php echo $_prefix ?>[region]"
+                                                    value="<?php echo $this->escapeHtml($_address->getRegion()) ?>"
+                                                    title="<?php echo (empty($fields[$field]['title']) ? $this->__($fields[$field]['label']) : $this->__($fields[$field]['title'])) ?>"
+                                                    class="input-text<?php echo $required ? ' required-entry' : '' ?>" style="display:none;"
+                                                />
+                                            <?php else: ?>
+                                                <?php
+                                                    if (isset($fields[$field]['value'])):
+                                                        $value = $fields[$field]['value'];
+                                                    else:
+                                                        $method = 'get' . ucfirst($field);
+                                                        $value = $_address->{$method}();
+                                                    endif;
+                                                ?>
+                                                <input type="text" placeholder="<?php echo $this->__($fields[$field]['label']) ?>*"
+                                                    name="<?php echo (empty($fields[$field]['name']) ? $_prefix . '[' . $field . ']' : $fields[$field]['name']) ?>"
+                                                    id="<?php echo $_prefix ?>:<?php echo $field ?>"
+                                                    value="<?php echo $this->escapeHtml($value) ?>"
+                                                    title="<?php echo (empty($fields[$field]['title']) ? $this->__($fields[$field]['label']) : $this->__($fields[$field]['title'])) ?>"
+                                                    class="<?php echo $fields[$field]['class'] ?><?php echo $required ? ' required-entry' : '' ?>"
+                                                />
+                                            <?php endif ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if ($isMulticolumn) : ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if ('hidden' === $status[$field]) : ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                <?php endif; ?>
+								<? /* Matteo: tolgo seconda linea indirizzi
+                                <?php if ('street1' === $field) : ?>
+                                    <?php for ($_i = 2, $_n = $this->helper('customer/address')->getStreetLines(); $_i <= $_n; $_i++): ?>
+                                        </li>
+                                        <li class="wide">
+                                            <div class="input-box">
+                                                <input type="text" title="<?php echo $this->__('Street Address %s', $_i) ?>" name="<?php echo $_prefix ?>[street][]" id="<?php echo $_prefix ?>:street<?php echo $_i?>" value="<?php echo $this->escapeHtml($_address->getStreet($_i)) ?>" class="input-text" />
+                                            </div>
+                                    <?php endfor ?>
+                                <?php endif; ?>
+										*/?>
+                            <?php endforeach; ?>
+                        </li>
+						<li class="custom_required"><span><?php echo $this->__('* I campi contrassegnati sono obbligatori') ?></span></li>
+                    <?php endforeach; ?>
+
+                    <?php $addressAttributes = $this->getChild('customer_form_' . $_prefix . '_address_user_defined_attributes');?>
+                    <?php if ($addressAttributes): ?>
+                        <?php $addressAttributes->setEntity($_address)->setEntityType('customer_address');?>
+                        <?php $addressAttributes->setFieldIdFormat($_prefix . ':%1$s')->setFieldNameFormat($_prefix . '[%1$s]');?>
+                        <?php echo $addressAttributes->setExcludeFileAttributes(true)->setShowContainer(false)->toHtml()?>
+                    <?php endif;?>
+
+                    <?php $customerAttributes = $this->getChild('customer_form_customer_user_defined_attributes');?>
+                    <?php if ($customerAttributes): ?>
+                        <?php $customerAttributes->setEntityModelClass('customer/customer')->setFieldIdFormat($_prefix . ':%1$s');?>
+                        <?php $customerAttributes->setFieldNameFormat($_prefix . '[%1$s]')->setShowContainer(false);?>
+                        <?php echo $customerAttributes->setExcludeFileAttributes(true)->toHtml()?>
+                    <?php endif;?>
+
+                    <?php if (!$this->isCustomerLoggedIn()) : ?>
+                        <?php
+                            $registrationMode = Mage::getStoreConfig('firecheckout/general/registration_mode');
+                            $register = $this->getRegisterAccount();
+                            $isAllowedGuest = Mage::helper('firecheckout')->isAllowedGuestCheckout();
+                        if ($isAllowedGuest || $register) : ?>
+                            <li class="control">
+                                <input type="checkbox" name="billing[register_account]" value="1" title="<?php echo $this->__('Create account for later use') ?>" id="billing:register_account" onclick="if(window.billing) billing.setCreateAccount(this.checked);"<?php if ($register || 'optional-checked' == $registrationMode) : ?> checked="checked"<?php endif;?> class="checkbox" /><label for="billing:register_account"><?php echo $this->__('Create account for later use') ?></label>
+                            </li>
+                        <?php else: ?>
+                            <li class="no-display">
+                                <input type="hidden" name="billing[register_account]" value="1"/>
+                            </li>
+                        <?php endif ?>
+                        <?php if ('hidden' !== $registrationMode || $register) : ?>
+                            <li class="fields" id="register-customer-password" <?php if ('optional' == $registrationMode && !$register) : ?>style="display: none;" <?php endif; ?>>
+         

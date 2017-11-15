@@ -1,0 +1,10 @@
+
+
+<config>
+	<modules>
+		<Quytv_Helloworld>
+			<active>true</active>
+			<codePool>local</codePool>
+		</Quytv_Helloworld>
+	</modules>
+</config>

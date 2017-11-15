@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Liu Khang
+ * @copyright Copyright (c) 2017
+ * @package MessageSuscess_Lk
+ */
+--> 
+<layout version="0.1.0">
+	<default>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>lk-message/css/lk-message.css</stylesheet>
+            </action>
+        </reference>
+		<reference name="after_body_start">
+			<block type="lk/messagesuscess" name="messagesuscess" template="message/lk_message.phtml" />
+		</reference>
+	</default>
+</layout>

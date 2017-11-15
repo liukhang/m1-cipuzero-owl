@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Liu Khang
+ * @copyright Copyright (c) 2017
+ * @package MessageSuscess_Lk
+ */
+-->
+<config>
+  <modules>
+    <MessageSuscess_Lk>
+      <active>true</active>
+      <codePool>local</codePool>
+      <version>0.1.0</version>
+   </MessageSuscess_Lk>
+  </modules>
+</config>

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+	<default>
+        <reference name="head">
+            <action method="addCss">
+                <stylesheet>lk-message/css/lk-message.css</stylesheet>
+            </action>
+        </reference>
+    </default>
+    <helloworld_index_index>
+       <reference name="content">
+           <block type="helloworld/helloworld" name="helloworld" template="helloworld/helloworld.phtml" />
+       </reference>
+   </helloworld_index_index>
+</layout>

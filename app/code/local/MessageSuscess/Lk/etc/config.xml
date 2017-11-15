@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Liu Khang
+ * @copyright Copyright (c) 2017
+ * @package MessageSuscess_Lk
+ */
+--> 
+
+<config>
+   <modules>
+       <MessageSuscess_Lk>
+        <version>0.1.0</version>
+    </MessageSuscess_Lk>
+</modules>
+<frontend>
+   <routers>
+       <lk_messagesuscess>
+           <use>standard</use>
+           <args>
+            <module>MessageSuscess_Lk</module>
+            <frontName>lk_messagesuscess</frontName>
+        </args>
+    </lk_messagesuscess>
+</routers>
+<layout>
+   <updates>
+       <lk_messagesuscess>
+           <file>lk_message.xml</file>
+       </lk_messagesuscess>
+   </updates>
+</layout>
+</frontend>
+<global>
+   <blocks>
+       <lk_messagesuscess>
+           <class>MessageSuscess_Lk_Block</class>
+       </lk_messagesuscess>
+   </blocks>
+</global>
+</config>

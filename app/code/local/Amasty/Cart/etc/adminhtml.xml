@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2015 Amasty (https://www.amasty.com)
+ * @package Amasty_Cart
+ */
+-->
+<config>
+    <translate>
+        <modules>
+            <Amasty_Cart>
+                <files>
+                    <default>Amasty_Cart.csv</default>
+                </files>
+            </Amasty_Cart>
+        </modules>
+    </translate>
+</config>
